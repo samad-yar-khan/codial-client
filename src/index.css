@@ -211,6 +211,7 @@ code {
 nav #user-dp {
   height: 40px;
 }
+
 nav .user {
   display: flex;
   align-items: center;
@@ -225,6 +226,10 @@ nav .right-nav {
   font-weight: bold;
   font-size: 16px;
   line-height: 22px;
+}
+
+nav .left-div .site-logo{
+  height: 40px;
 }
 nav .nav-links ul {
   display: flex;
