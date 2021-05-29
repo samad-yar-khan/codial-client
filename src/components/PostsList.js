@@ -9,7 +9,7 @@ class PostsList extends React.Component {
         let {posts} = this.props;
 
         return (
-            <div className="post-list">
+            <div className="posts-list">
             {posts.map((post) => {
               return (
                 <div className="post-wrapper">

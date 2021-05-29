@@ -6,7 +6,7 @@ import {PostsList} from './index'
         const {posts} =  this.props;
 
          return (
-             <div>
+             <div className='home'>
                 <PostsList posts={posts}/>
              </div>
          );
