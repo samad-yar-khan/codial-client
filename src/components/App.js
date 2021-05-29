@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { fetchPosts } from '../actions/posts';
 
-import { Home, Navbar,Error404 } from './index';
+import { Home, Navbar, Error404 } from './index';
 
-const Settings = () => {
-  return <div>settings</div>;
+const Register = () => {
+  return <div>Register</div>;
 };
 const Login = () => {
   return <div>login</div>;
@@ -25,11 +25,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Navbar />
-
         {/* <PostsList posts={posts} /> */}
 
         <Router>
+          <Navbar />
           <Switch>
             <Route
               exact={true}
@@ -39,7 +38,7 @@ class App extends React.Component {
                 return <Home {...props} posts={posts} />;
               }}
             />
-           <Route
+            <Route
               exact={true}
               path={'/home'}
               render={(props) => {
@@ -47,8 +46,8 @@ class App extends React.Component {
                 return <Home {...props} posts={posts} />;
               }}
             />
-            <Route exact={true} path={'/settings'} component={Settings} />
             <Route exact={true} path={'/login'} component={Login} />
+            <Route exact={true} path={'/register'} component={Register} />
             <Route component={Error404} />
           </Switch>
         </Router>
