@@ -7,6 +7,11 @@ import { fetchPosts } from '../actions/posts';
 
 import { PostsList , Navbar} from './index';
 
+const Home = ()=>{return <div>home</div>};
+const Settings = ()=>{return <div>settings</div>};
+const Login = ()=>{return <div>login</div>};
+
+
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
@@ -19,7 +24,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <Navbar />
-        <PostsList posts={posts} />
+
+    
+        {/* <PostsList posts={posts} /> */}
+    
+        <Router>
+        <ul>
+          <li><Link to='/'>HOME</Link></li>
+          <li><Link to='/settings'>Settings</Link></li>
+          <li><Link to='/login'>login</Link></li>
+
+        </ul>
+
+          <Route exact={true} path={'/'} component={Home}/>
+          <Route exact={true} path={'/home'} component={Home}/>
+          <Route exact={true} path={'/settings'} component={Settings}/>
+          <Route exact={true} path={'/login'} component={Login}/>
+
+        </Router>
       </div>
     );
   }
