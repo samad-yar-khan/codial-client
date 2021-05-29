@@ -5,9 +5,9 @@ import {BrowserRouter as Router , Link , Route} from 'react-router-dom'
 
 import { fetchPosts } from '../actions/posts';
 
-import { PostsList , Navbar} from './index';
+import { Home , Navbar} from './index';
 
-const Home = ()=>{return <div>home</div>};
+
 const Settings = ()=>{return <div>settings</div>};
 const Login = ()=>{return <div>login</div>};
 
@@ -29,14 +29,10 @@ class App extends React.Component {
         {/* <PostsList posts={posts} /> */}
     
         <Router>
-        <ul>
-          <li><Link to='/'>HOME</Link></li>
-          <li><Link to='/settings'>Settings</Link></li>
-          <li><Link to='/login'>login</Link></li>
-
-        </ul>
-
-          <Route exact={true} path={'/'} component={Home}/>
+      
+          <Route exact={true} path={'/'}  render={(props)=>{ 
+            return <Home {...props} posts={posts} />
+          }}/>
           <Route exact={true} path={'/home'} component={Home}/>
           <Route exact={true} path={'/settings'} component={Settings}/>
           <Route exact={true} path={'/login'} component={Login}/>
