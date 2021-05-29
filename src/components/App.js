@@ -5,14 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { fetchPosts } from '../actions/posts';
 
-import { Home, Navbar, Error404 } from './index';
+import { Home, Navbar, Error404 ,Login ,Register } from './index';
 
-const Register = () => {
-  return <div>Register</div>;
-};
-const Login = () => {
-  return <div>login</div>;
-};
 
 class App extends React.Component {
   componentDidMount() {
