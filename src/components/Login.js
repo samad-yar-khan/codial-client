@@ -46,9 +46,12 @@ class Login extends React.Component {
 
   render() {
 
+    const {  error, inProggress} = this.props.auth;
+
     return (
       <form method="post" action="#" className="login-form">
         <div className="login-signup-header">Login</div>
+        {error && <div className='alert error-dailog'>{error}</div> }
         <div className="field">
           <input
             type="email"
@@ -70,7 +73,7 @@ class Login extends React.Component {
           />
         </div>
         <div className="field">
-          <button onClick={this.handleFormSubmit}>Login</button>
+          <button onClick={this.handleFormSubmit} disabled={inProggress}>Login</button>
         </div>
       </form>
     );
