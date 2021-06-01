@@ -63,8 +63,10 @@ class Register extends React.Component {
   };
 
   render() {
+    const {  error, inProggress} = this.props.auth;
     return (
       <form method="post" action="#" className="login-form">
+         {error && <div className='alert error-dailog'>{error}</div> }
         <div className="login-signup-header">Register</div>
         <div className="field">
           
@@ -105,8 +107,7 @@ class Register extends React.Component {
           />
         </div>
         <div className="field">
-          <button onClick={this.handleFormSubmit}>Register</button>
-        </div>
+        <button onClick={this.handleFormSubmit} disabled={inProggress}>{inProggress ? 'Registering....' : 'Register'}</button>        </div>
       </form>
     );
   }

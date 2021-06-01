@@ -10,7 +10,7 @@ export function getFormbody (params){
         formBody.push(ecodedKey+'=' + encodedValue);//user%20Name=samad%20Khan
     }
 
-    console.log(formBody.join('&'));
+    // console.log(formBody.join('&'));
     return formBody.join('&');//this will join all array elemnts by a '&' and return a string https://www.w3schools.com/jsref/jsref_join.asp
     // user%20Name=samad%20Khan&password=samad123
 }   

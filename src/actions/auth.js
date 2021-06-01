@@ -46,6 +46,7 @@ export function login(email, password) {
         console.log(data);
         if (data.success) {
           //save user
+          localStorage.setItem('token'  , data.data.token);
           dispatch(loginSuccess(data.data.user))
           return;
         } else {
@@ -79,6 +80,7 @@ export function signin(email, password , confirm_password ,  name) {
           console.log(data);
           if (data.success) {
             //save user
+            localStorage.setItem('token'  , data.data.token);
             dispatch(signinSuccess(data.data.user))
             return;
           } else {
