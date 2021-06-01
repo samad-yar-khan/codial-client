@@ -1,12 +1,13 @@
 //action names
 import {UPDATE_POSTS} from './actionTypes'
+import {APIUrls} from '../helper/urls'
 
 
 
 export function fetchPosts(){
     //this will work becase of thunk
     return(dispatch)=>{
-        const url = 'http://codeial.codingninjas.com:8000/api/v2/posts?page=1&limit=5';
+        const url = APIUrls.fetchPosts(1,5);//fethcing post of page one and limit is set to 5
 
         fetch(url)
             .then((response)=>{
