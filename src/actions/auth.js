@@ -36,7 +36,10 @@ export function login(email, password) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: getFormbody(email, password), //this will send us a url encoded string with email and  pasword
+      body: getFormbody({
+          email : email,
+          password:password
+      }), //this will send us a url encoded string with email and  pasword
     })
       .then((response) => response.json())
       .then((data) => {
@@ -52,8 +55,9 @@ export function login(email, password) {
   };
 }
 
+/******* SIGN IN **********/
 
-export function signin(email, password , confirmPassword ,  name) {
+export function signin(email, password , confirm_password ,  name) {
     return function (dispatch) {
       dispatch(startSignin()); //we are doing this to set the inprogress state prop of auth while we check tteh auth
       const url = APIUrls.signup();
@@ -62,7 +66,13 @@ export function signin(email, password , confirmPassword ,  name) {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: getFormbody(email , name , password, confirmPassword ), //this will send us a url encoded string with email and  pasword
+        body: getFormbody({
+            email : email,
+            password:password,
+            confirm_password:confirm_password,
+            name:name
+        }
+        ), //this will send us a url encoded string with email and  pasword
       })
         .then((response) => response.json())
         .then((data) => {
@@ -74,6 +84,8 @@ export function signin(email, password , confirmPassword ,  name) {
           } else {
             dispatch(signinFailed(data.message));
           }
+        }).catch((err)=>{
+            console.log(err);
         });
     };
   }

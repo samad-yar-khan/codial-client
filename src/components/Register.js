@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {signin} from '../actions/auth';
+import {connect} from 'react-redux';
+
+
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -39,18 +43,23 @@ class Register extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { email, password , confirmedPassword} = this.state;
+    const { name ,email, password , confirmedPassword} = this.state;
     console.log('email', email);
     console.log('pass', password);
     console.log('c-pass', confirmedPassword);
 
+    this.props.dispatch(signin(email, password , confirmedPassword ,  name));
+
     // console.log("email" , this.emailInputRef);
     // console.log("pass" , this.passwordInputRef);
-    this.setState({
-      email:'',
-      password:'',
-      confirmedPassword:''
-    })
+
+
+    // this.setState({
+    //   email:'',
+    //   password:'',
+    //   confirmedPassword:'',
+    //   name:''
+    // })
   };
 
   render() {
@@ -103,4 +112,12 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+function mapStateToProps(state){
+  return {
+    auth : state.auth
+  }
+}
+
+const connectedSigninComponent = connect(mapStateToProps)(Register);
+
+export default connectedSigninComponent;
