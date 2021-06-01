@@ -1,8 +1,8 @@
 import React from 'react';
-
-import {signin} from '../actions/auth';
-import {connect} from 'react-redux';
-import {clearAuthState} from '../actions/auth'
+import { Redirect } from 'react-router-dom';
+import { signin } from '../actions/auth';
+import { connect } from 'react-redux';
+import { clearAuthState } from '../actions/auth';
 
 class Register extends React.Component {
   constructor(props) {
@@ -13,14 +13,13 @@ class Register extends React.Component {
       email: '',
       password: '',
       confirmedPassword: '',
-      name:''
+      name: '',
     };
   }
 
   componentWillUnmount() {
     this.props.dispatch(clearAuthState());
   }
-
 
   handleNameChange = (e) => {
     this.setState({
@@ -48,16 +47,15 @@ class Register extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { name ,email, password , confirmedPassword} = this.state;
+    const { name, email, password, confirmedPassword } = this.state;
     console.log('email', email);
     console.log('pass', password);
     console.log('c-pass', confirmedPassword);
 
-    this.props.dispatch(signin(email, password , confirmedPassword ,  name));
+    this.props.dispatch(signin(email, password, confirmedPassword, name));
 
     // console.log("email" , this.emailInputRef);
     // console.log("pass" , this.passwordInputRef);
-
 
     // this.setState({
     //   email:'',
@@ -68,60 +66,67 @@ class Register extends React.Component {
   };
 
   render() {
-    const {  error, inProggress} = this.props.auth;
+    const { error, inProggress , isLoggedIn} = this.props.auth;
+
+
+    if(isLoggedIn){
+      return <Redirect to='/' />
+    }
+
     return (
       <form method="post" action="#" className="login-form">
-         {error && <div className='alert error-dailog'>{error}</div> }
+        {error && <div className="alert error-dailog">{error}</div>}
         <div className="login-signup-header">Register</div>
         <div className="field">
-          
-          <input 
-            type="text" 
-            placeholder="Name" 
+          <input
+            type="text"
+            placeholder="Name"
             onChange={this.handleNameChange}
-            required 
+            required
             value={this.state.name}
           />
         </div>
         <div className="field">
-
-          <input 
-            type="email" 
-            placeholder="Email" 
+          <input
+            type="email"
+            placeholder="Email"
             onChange={this.handleEmailChange}
-            required 
+            required
             value={this.state.email}
           />
         </div>
         <div className="field">
-          <input 
-            type="password" 
-            placeholder="Password" 
+          <input
+            type="password"
+            placeholder="Password"
             onChange={this.handlePasswordChange}
-            required 
+            required
             value={this.state.password}
           />
         </div>
         <div className="field">
-          <input 
-            type="password" 
-            placeholder="Confirm Password" 
+          <input
+            type="password"
+            placeholder="Confirm Password"
             onChange={this.handleConfirmPasswordChange}
-            required 
+            required
             value={this.state.confirmedPassword}
           />
         </div>
         <div className="field">
-        <button onClick={this.handleFormSubmit} disabled={inProggress}>{inProggress ? 'Registering....' : 'Register'}</button>        </div>
+          <button onClick={this.handleFormSubmit} disabled={inProggress}>
+            {inProggress ? 'Registering....' : 'Register'}
+          </button>{' '}
+        </div>
       </form>
     );
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-    auth : state.auth
-  }
+    auth: state.auth,
+  };
 }
 
 const connectedSigninComponent = connect(mapStateToProps)(Register);
