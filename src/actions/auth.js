@@ -20,6 +20,7 @@ export function startLogin(){
 export function login(email,password){
 
     return function(dipatch){
+        dipatch(startLogin());//we are doing this to set the inprogress state prop of auth while we check tteh auth
         const url = APIUrls.login();
         fetch(url ,  {
             method: 'post',
@@ -27,6 +28,10 @@ export function login(email,password){
                 'Content-Type' : 'application/x-www-form-urlencoded'
             },
             body:getFormbody(email , password)//this will send us a url encoded string with email and  pasword
+        })
+        .then((response) => response.json() )
+        .then((data)=>{
+            console.log(data);
         })
 
     }

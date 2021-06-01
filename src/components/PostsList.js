@@ -11,6 +11,7 @@ class PostsList extends React.Component {
         return (
             <div className="posts-list">
             {posts.map((post) => {
+  
               return (
                 <div className="post-wrapper">
                   <div className="post-header">

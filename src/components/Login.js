@@ -1,4 +1,6 @@
 import React from 'react';
+import {login} from '../actions/auth'
+import {connect} from 'react-redux'
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,6 +33,11 @@ class Login extends React.Component {
 
     // console.log("email" , this.emailInputRef);
     // console.log("pass" , this.passwordInputRef);
+    if(email && password){
+      this.props.dispatch(login(email , password));
+    }
+
+
     this.setState({
         email:'',
         password:'',
@@ -70,4 +77,12 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+function mapStateToProps(state){
+  return {
+    auth : state.auth
+  }
+} 
+
+const ConnectedLoginComponent=connect(mapStateToProps)(Login); //we need to conecct it to strore to use dipatth
+
+export default ConnectedLoginComponent;
