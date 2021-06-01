@@ -7,6 +7,7 @@ import {
   SIGNUP_START,
   AUTHENTICATE_USER,
   LOGOUT_USER,
+  CLEAR_AUTH_STATE,
 } from './actionTypes';
 
 import { APIUrls } from '../helper/urls';
@@ -134,5 +135,14 @@ export function authenticateUser(user) {
 export function logoutUser (){
     return {
         type:LOGOUT_USER
+    }
+}
+
+//whener logi fails or register fails , the error val is set in our auth state and we 
+//here degine an action to clear that error state upon chaging ppage
+
+export function clearAuthState(){
+    return {
+        type :CLEAR_AUTH_STATE
     }
 }

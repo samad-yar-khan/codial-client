@@ -17,3 +17,7 @@ export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 
 //For logout functionalit
 export const LOGOUT_USER = 'LOGOUT_USER'
+
+//whener logi fails or register fails , the error val is set in our auth state and we 
+//here degine an action to clear that error state upon chaging ppage
+export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
