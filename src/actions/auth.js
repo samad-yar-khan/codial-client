@@ -2,6 +2,8 @@ import {LOGIN_START ,
         LOGIN_SUCCESS,
         LOGIN_FAIL   } from './actionTypes'
 
+import {APIUrls} from '../helper/urls'
+
 export function startLogin(){
 
     return {
@@ -16,8 +18,16 @@ export function startLogin(){
 export function login(email,password){
 
     return function(dipatch){
-        const url = '';
-        fetch(url)
+        const url = APIUrls.login();
+        fetch(url ,  {
+            method: 'post',
+            headers :{
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
+            body:{
+                
+            }
+        })
 
     }
 

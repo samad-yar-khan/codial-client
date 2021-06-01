@@ -1,0 +1,13 @@
+//this is justa a utlit heper to return our encoded string
+export function getFormbody (params){
+    let formBody = [] ;
+
+    for(let property in params){
+        let ecodedKey = encodeURIComponent(property); //user name = user%20nname
+        let encodedValue = encodeURIComponent(params[property]); //this will enxoe the value of the key aakkaash malhta = akaash%@20malhotra
+        formBody.push(ecodedKey+'=' + encodedValue);//user%20Name=samad%20Khan
+    }
+
+    return formBody.join('&');//this will join all array elemnts by a '&' and return a string https://www.w3schools.com/jsref/jsref_join.asp
+    // user%20Name=samad%20Khan&password=samad123
+}   
