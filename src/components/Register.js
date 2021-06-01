@@ -2,7 +2,7 @@ import React from 'react';
 
 import {signin} from '../actions/auth';
 import {connect} from 'react-redux';
-
+import {clearAuthState} from '../actions/auth'
 
 class Register extends React.Component {
   constructor(props) {
@@ -16,6 +16,11 @@ class Register extends React.Component {
       name:''
     };
   }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
+  }
+
 
   handleNameChange = (e) => {
     this.setState({

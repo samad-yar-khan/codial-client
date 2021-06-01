@@ -1,5 +1,5 @@
 import React from 'react';
-import {login} from '../actions/auth'
+import {clearAuthState, login} from '../actions/auth'
 import {connect} from 'react-redux'
 
 class Login extends React.Component {
@@ -12,6 +12,11 @@ class Login extends React.Component {
       password: '',
     };
   }
+
+  componentWillUnmount() {
+    this.props.dispatch(clearAuthState());
+  }
+  
 
   handleEmailChange=(e)=>{
       this.setState({
