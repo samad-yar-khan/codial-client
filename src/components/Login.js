@@ -73,7 +73,7 @@ class Login extends React.Component {
           />
         </div>
         <div className="field">
-          <button onClick={this.handleFormSubmit} disabled={inProggress}>Login</button>
+          <button onClick={this.handleFormSubmit} disabled={inProggress}>{inProggress ? 'Logging In....' : 'Login'}</button>
         </div>
       </form>
     );
