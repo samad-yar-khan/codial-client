@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import jwt_decode  from 'jwt-decode';//import everrything
 
 import { fetchPosts } from '../actions/posts';
 
@@ -11,6 +12,16 @@ import { Home, Navbar, Error404 ,Login ,Register } from './index';
 class App extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchPosts());
+
+    //we check if a jwt ltoken exists in local
+    //if it exists we login the user
+    const token = localStorage.getItem('token');
+    if(token){
+      const user = jwt_decode(token);
+      console.log(user);
+    }
+    //now if we found user using a jwt token we will dipatch a diferet actio
+
   }
 
   render() {

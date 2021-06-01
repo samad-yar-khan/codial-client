@@ -1,4 +1,13 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL ,SIGNUP_FAIL ,SIGNUP_SUCCESS ,SIGNUP_START} from './actionTypes';
+import {
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  SIGNUP_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_START,
+  AUTHENTICATE_USER,
+  LOGOUT_USER,
+} from './actionTypes';
 
 import { APIUrls } from '../helper/urls';
 
@@ -37,8 +46,8 @@ export function login(email, password) {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: getFormbody({
-          email : email,
-          password:password
+        email: email,
+        password: password,
       }), //this will send us a url encoded string with email and  pasword
     })
       .then((response) => response.json())
@@ -46,8 +55,8 @@ export function login(email, password) {
         console.log(data);
         if (data.success) {
           //save user
-          localStorage.setItem('token'  , data.data.token);
-          dispatch(loginSuccess(data.data.user))
+          localStorage.setItem('token', data.data.token);
+          dispatch(loginSuccess(data.data.user));
           return;
         } else {
           dispatch(loginFailed(data.message));
@@ -58,59 +67,72 @@ export function login(email, password) {
 
 /******* SIGN IN **********/
 
-export function signin(email, password , confirm_password ,  name) {
-    return function (dispatch) {
-      dispatch(startSignin()); //we are doing this to set the inprogress state prop of auth while we check tteh auth
-      const url = APIUrls.signup();
-      fetch(url, {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: getFormbody({
-            email : email,
-            password:password,
-            confirm_password:confirm_password,
-            name:name
+export function signin(email, password, confirm_password, name) {
+  return function (dispatch) {
+    dispatch(startSignin()); //we are doing this to set the inprogress state prop of auth while we check tteh auth
+    const url = APIUrls.signup();
+    fetch(url, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: getFormbody({
+        email: email,
+        password: password,
+        confirm_password: confirm_password,
+        name: name,
+      }), //this will send us a url encoded string with email and  pasword
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.success) {
+          //save user
+          localStorage.setItem('token', data.data.token);
+          dispatch(signinSuccess(data.data.user));
+          return;
+        } else {
+          dispatch(signinFailed(data.message));
         }
-        ), //this will send us a url encoded string with email and  pasword
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          if (data.success) {
-            //save user
-            localStorage.setItem('token'  , data.data.token);
-            dispatch(signinSuccess(data.data.user))
-            return;
-          } else {
-            dispatch(signinFailed(data.message));
-          }
-        }).catch((err)=>{
-            console.log(err);
-        });
-    };
-  }
-  
-
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
 
 export function startSignin() {
+  return {
+    type: SIGNUP_START,
+  };
+}
+
+export function signinFailed(errorMessage) {
+  return {
+    type: SIGNUP_FAIL,
+    error: errorMessage,
+  };
+}
+
+export function signinSuccess(user) {
+  return {
+    type: SIGNUP_SUCCESS,
+    user: user,
+  };
+}
+
+//FOR LOGGING in a user if a jwt is found
+
+export function authenticateUser(user) {
+  return {
+    type: AUTHENTICATE_USER,
+    user : user
+  };
+}
+
+
+export function logoutUser (){
     return {
-      type: SIGNUP_START,
-    };
-  }
-  
-  export function signinFailed(errorMessage) {
-    return {
-      type: SIGNUP_FAIL,
-      error: errorMessage,
-    };
-  }
-  
-  export function signinSuccess(user) {
-    return {
-      type: SIGNUP_SUCCESS,
-      user: user,
-    };
-  }
-  
+        type:LOGOUT_USER
+    }
+}

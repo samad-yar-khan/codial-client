@@ -11,3 +11,9 @@ export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
+
+//For logging in an existing user
+export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
+
+//For logout functionalit
+export const LOGOUT_USER = 'LOGOUT_USER'
