@@ -40,7 +40,7 @@ class PostsList extends React.Component {
                         <span>{post.likes.length}</span>
                       </div>
   
-                      <div className="post-comment-icon">
+                      <div className="post-comments-icon">
                         <img
                           alt={'comments'}
                           src={
