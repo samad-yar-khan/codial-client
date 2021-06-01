@@ -43,6 +43,7 @@ export function login(email, password) {
         console.log(data);
         if (data.success) {
           //save user
+          dispatch(loginSuccess(data.data.user))
           return;
         } else {
           dispatch(loginFailed(data.message));

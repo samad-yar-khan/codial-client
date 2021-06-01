@@ -9,8 +9,15 @@ class Register extends React.Component {
       email: '',
       password: '',
       confirmedPassword: '',
+      name:''
     };
   }
+
+  handleNameChange = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
+  };
 
   handleEmailChange = (e) => {
     this.setState({
@@ -51,6 +58,17 @@ class Register extends React.Component {
       <form method="post" action="#" className="login-form">
         <div className="login-signup-header">Register</div>
         <div className="field">
+          
+          <input 
+            type="text" 
+            placeholder="Name" 
+            onChange={this.handleNameChange}
+            required 
+            value={this.state.name}
+          />
+        </div>
+        <div className="field">
+
           <input 
             type="email" 
             placeholder="Email" 
