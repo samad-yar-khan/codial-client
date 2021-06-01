@@ -7,6 +7,7 @@ import jwt_decode  from 'jwt-decode';//import everrything
 import { fetchPosts } from '../actions/posts';
 
 import { Home, Navbar, Error404 ,Login ,Register } from './index';
+import { authenticateUser } from '../actions/auth';
 
 
 class App extends React.Component {
@@ -19,6 +20,7 @@ class App extends React.Component {
     if(token){
       const user = jwt_decode(token);
       console.log(user);
+      this.props.dispatch(authenticateUser(user));
     }
     //now if we found user using a jwt token we will dipatch a diferet actio
 

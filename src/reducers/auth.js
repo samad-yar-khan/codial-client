@@ -4,7 +4,9 @@ import {
         LOGIN_FAIL , 
         SIGNUP_FAIL ,
         SIGNUP_START , 
-        SIGNUP_SUCCESS 
+        SIGNUP_SUCCESS, 
+        AUTHENTICATE_USER,
+        LOGOUT_USER
         } from '../actions/actionTypes';
 
 const initialAuthState = {
@@ -39,6 +41,18 @@ export default function auth(state = initialAuthState, action) {
         inProggress: false,
         error:action.error
       };
+    case AUTHENTICATE_USER:
+      return{
+        ...state,
+        user: action.user, //this will contain the jwt
+        isLoggedIn:true
+      }
+    case LOGOUT_USER:
+      return{
+        ...state,
+        user : {},
+        isLoggedIn:false
+      }
 
 
     default:
