@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import jwt_decode  from 'jwt-decode';//import everrything
 
 import { fetchPosts } from '../actions/posts';
@@ -9,6 +9,19 @@ import { fetchPosts } from '../actions/posts';
 import { Home, Navbar, Error404 ,Login ,Register } from './index';
 import { authenticateUser } from '../actions/auth';
 
+const Settings = () => <div>SETTINGS</div>;
+
+const PrivateRoute = (privateRouteProps) => {
+  
+  const {component : Component , path , isLoggedIn } = privateRouteProps;
+
+  return <Route  
+            path={path}
+            render = {(props)=>{
+              return isLoggedIn ? <Component {...props}/> : <Redirect to={'/login'}/>;
+            }}
+        />
+}
 
 class App extends React.Component {
   componentDidMount() {
@@ -32,7 +45,7 @@ class App extends React.Component {
 
   render() {
     console.log('PROPS ', this.props);
-    const { posts } = this.props;
+    const { posts , auth} = this.props;
 
     return (
       <div className="App">
@@ -59,6 +72,11 @@ class App extends React.Component {
             />
             <Route exact={true} path={'/login'} component={Login} />
             <Route exact={true} path={'/register'} component={Register} />
+            <PrivateRoute 
+              component = {Settings}
+              isLoggedIn = {auth.isLoggedIn}
+              path = {'/settings'}
+            />
             <Route component={Error404} />
           </Switch>
         </Router>
@@ -70,6 +88,7 @@ class App extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    auth: state.auth,
   };
 }
 
