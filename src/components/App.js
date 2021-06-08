@@ -18,7 +18,12 @@ const PrivateRoute = (privateRouteProps) => {
   return <Route  
             path={path}
             render = {(props)=>{
-              return isLoggedIn ? <Component {...props}/> : <Redirect to={'/login'}/>;
+              return isLoggedIn ? <Component {...props}/> : <Redirect to={{
+                pathname:'/login',
+                state : {
+                  from : props.location /* This is put here to logim can redirect too the old location once user is logged in */
+                }
+              }}/>;
             }}
         />
 }
