@@ -6,10 +6,10 @@ import jwt_decode  from 'jwt-decode';//import everrything
 
 import { fetchPosts } from '../actions/posts';
 
-import { Home, Navbar, Error404 ,Login ,Register } from './index';
+import { Home, Navbar, Error404 ,Login ,Register ,Settings} from './index';
 import { authenticateUser } from '../actions/auth';
 
-const Settings = () => <div>SETTINGS</div>;
+// const Settings = () => <div>SETTINGS</div>;
 
 const PrivateRoute = (privateRouteProps) => {
   
