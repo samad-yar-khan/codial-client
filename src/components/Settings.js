@@ -13,8 +13,10 @@ class Settings extends React.Component {
     };
   }
 
-  handleChange = () => {
-    console.log('HEY');
+  handleChange = (feildName , value) => {
+    this.setState({
+        [feildName] : value
+    })
   };
 
   render() {
@@ -40,8 +42,8 @@ class Settings extends React.Component {
             <input
               type="text"
               value={this.state.name}
-              onChange={() => {
-                this.handleChange();
+              onChange={(event) => {
+                this.handleChange('name' , event.target.value);
               }}
             />
           ) : (
@@ -56,8 +58,8 @@ class Settings extends React.Component {
             <input
               type="password"
               value={this.state.password}
-              onChange={() => {
-                this.handleChange();
+              onChange={(event) => {
+                this.handleChange('password' , event.target.value);
               }}
             />
           </div>
@@ -70,8 +72,8 @@ class Settings extends React.Component {
             <input
               type="password"
               value={this.state.confirmPassword}
-              onChange={() => {
-                this.handleChange();
+              onChange={(event) => {
+                this.handleChange('confirmPassword' , event.target.value);
               }}
             />
           </div>
@@ -81,11 +83,11 @@ class Settings extends React.Component {
           {editMode ? (
             <button className="button save-btn">Save</button>
           ) : (
-            <button className="button edit-btn">Edit Profile</button>
+            <button className="button edit-btn" onClick = {(event)=>{this.handleChange('editMode' , true)}}>Edit Profile</button>
           )}
         </div>
 
-        {editMode && <div className="go-back">Go Back</div>}
+        {editMode && <div className="go-back" onClick = {(event)=>{this.handleChange('editMode' , false)}}>Go Back</div>}
       </div>
     );
   }
