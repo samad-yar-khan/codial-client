@@ -5,7 +5,7 @@ import {
 
 
 import { APIUrls } from '../helper/urls';
-import {getFormbody} from '../helper/utils'
+import {getFormbody , getAuthTokenFromLocalStorage} from '../helper/utils'
 
 export function editUser(userId , userName , password , confirmPassword){
     return (dispatch)=>{
@@ -15,6 +15,7 @@ export function editUser(userId , userName , password , confirmPassword){
             method : "POST",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+
             },
 
         })
@@ -26,7 +27,7 @@ export function editUserSuccessful(user){
     return {
         type:EDIT_USER_SUCCESSFUL,
         user : user,
-        
+
     }
 }
 

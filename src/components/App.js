@@ -9,6 +9,8 @@ import { fetchPosts } from '../actions/posts';
 import { Home, Navbar, Error404 ,Login ,Register ,Settings} from './index';
 import { authenticateUser } from '../actions/auth';
 
+import {getAuthTokenFromLocalStorage} from '../helper/utils';
+
 // const Settings = () => <div>SETTINGS</div>;
 
 const PrivateRoute = (privateRouteProps) => {
@@ -34,7 +36,7 @@ class App extends React.Component {
 
     //we check if a jwt ltoken exists in local
     //if it exists we login the user
-    const token = localStorage.getItem('token');
+    const token = getAuthTokenFromLocalStorage();
     if(token){
       const user = jwt_decode(token);
       console.log(user);
