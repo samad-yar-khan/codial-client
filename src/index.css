@@ -457,18 +457,18 @@ nav .nav-links ul li:hover {
   outline: none;
 }
 .settings .edit-btn {
-  border: 1px solid #ef7917;
+  border: 1px solid #7439fd;
   box-sizing: border-box;
-  color: #ef7917;
+  color: #7439fd;
 }
 .settings .save-btn {
-  background: #ef7917;
+  background: #7439fd;
   color: #fff;
   border: none;
   padding: 10px 20px;
 }
 .settings .go-back {
-  color: #ef7917;
+  color: #7439fd;
   margin-top: 7px;
   font-size: 13px;
 }

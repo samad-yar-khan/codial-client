@@ -99,6 +99,10 @@ class Settings extends React.Component {
           </div>
         )}
 
+        {(editMode && this.state.password !== this.state.confirmPassword)&&
+          <div className="alert error-dailog">Password Dont Match !</div>
+        }
+
         <div className="btn-grp">
           {editMode ? (
             <button className="button save-btn" onClick={this.handleSave}>Save</button>
