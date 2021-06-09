@@ -12,7 +12,7 @@ import {
 
 import { APIUrls } from '../helper/urls';
 
-import { getFormbody } from '../helper/utils'; //this helps us conver our paramaters into a proper encoded url
+import { getFormbody , setAuthTokenInLocalStorage } from '../helper/utils'; //this helps us conver our paramaters into a proper encoded url
 
 export function startLogin() {
   return {
@@ -56,7 +56,9 @@ export function login(email, password) {
         console.log(data);
         if (data.success) {
           //save user
-          localStorage.setItem('token', data.data.token);
+          // localStorage.setItem('token', data.data.token);
+           // we have made this helper too set the token , and it repllacs the line above it and we dont need to use setItem , we just use our func which calls the same internally
+          setAuthTokenInLocalStorage(data.data.token);
           dispatch(loginSuccess(data.data.user));
           return;
         } else {
