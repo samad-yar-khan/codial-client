@@ -10,36 +10,36 @@ import {getFormbody , getAuthTokenFromLocalStorage, setAuthTokenInLocalStorage} 
 export function editUser(userId , name , password , confirmPassword){
     return (dispatch)=>{
 
-        const url = APIUrls.editUser;
+        const url = APIUrls.editUser();
         fetch(url , {
             method : "POST",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization' : `Bearer ${getAuthTokenFromLocalStorage()}`
+                Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
             },
             body : getFormbody({
                 name: name,
                 password: password,
-                confirm_password: confirm_password,
+                confirm_password: confirmPassword,
                 id:userId,
             })
 
-        }).
-        then((response)=> response.json()).
-        then((data) => {
+        })
+        .then((response)=> response.json())
+        .then((data) => {
             console.log('user edit data',data);
             if(data.success){
-                editUserSuccessful(data.data.user);
+                dispatch(editUserSuccessful(data.data.user));
                 if(data.data.token){
                     setAuthTokenInLocalStorage(data.data.token);
                 }
             }else{
-                dispatc(editUserFailure(data.message));
+                dispatch(editUserFailure(data.message));
             }
 
             return;
-        }).
-        catch((err)=> {console.log("ERROR :" ,err)});
+        })
+        .catch((err)=> {console.log("ERROR :" ,err)});
 
     }
 }
