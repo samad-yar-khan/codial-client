@@ -43,7 +43,7 @@ class App extends React.Component {
       this.props.dispatch(authenticateUser({
         name : user.name,
         email : user.email,
-        id : user._id
+        _id : user._id
       }));
     }
     //now if we found user using a jwt token we will dipatch a diferet actio

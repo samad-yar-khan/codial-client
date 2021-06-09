@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {editUser} from '../actions/user'
+import {clearAuthState} from '../actions/auth'
 
 class Settings extends React.Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class Settings extends React.Component {
     };
   }
 
+  componentWillUnmount(){
+    this.props.dispatch(clearAuthState());
+  }
+
   handleChange = (feildName , value) => {
     this.setState({
         [feildName] : value
@@ -25,7 +30,7 @@ class Settings extends React.Component {
     const {user } = this.props.auth;
     console.log(user.id);
     console.log("click Save !");
-    this.props.dispatch(editUser(user.id , name , password , confirmPassword));    
+    this.props.dispatch(editUser(user._id , name , password , confirmPassword));    
     
   }
 
