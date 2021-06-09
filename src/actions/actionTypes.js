@@ -21,3 +21,9 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 //whener logi fails or register fails , the error val is set in our auth state and we 
 //here degine an action to clear that error state upon chaging ppage
 export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
+
+//EDIT USER ACTIONS
+export const EDIT_USER_SUCCESSFUL = 'EDIT_USER_SUCCESSFUL';
+export const EDIT_USER_FAILURE = 'EDIT_USER_FAILURE';
+export const EDIT_USER = 'EDIT_USER';
+
