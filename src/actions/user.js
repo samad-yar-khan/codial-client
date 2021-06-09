@@ -30,12 +30,16 @@ export function editUser(userId , name , password , confirmPassword){
             console.log('data',data);
             if(data.success){
                 editUserSuccessful(data.data.user);
+                if(data.data.token){
+                    setAuthTokenInLocalStorage(data.data.token);
+                }
+            }else{
+                dispatc(editUserFailure(data.message));
             }
 
-            if(data.data.token){
-                setAuthTokenInLocalStorage(data.data.token);
-            }
-        })
+            return;
+        }).
+        catch((err)=> {console.log("ERROR :" ,err)});
 
     }
 }
