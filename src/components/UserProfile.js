@@ -12,8 +12,15 @@ class UserProfile extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const {match} = this.props;
 
+    if(match.params.userId){
+        console.log(match.params.userId);
+    }
 
+  }
+  
   handleChange = (feildName , value) => {
     this.setState({
         [feildName] : value
@@ -37,8 +44,8 @@ class UserProfile extends React.Component {
   render() {
     const { user  , error } = this.props.auth;
     const { friend } = this.state;
-    const {match : {params} } = this.props;
-    console.log(params);
+    // const {match : {params} } = this.props;
+    // console.log(params);
 
     return (
       <div className="settings">

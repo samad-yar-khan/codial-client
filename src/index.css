@@ -531,3 +531,8 @@ nav .nav-links ul li:hover {
 #add-post-btn:hover {
   cursor: pointer;
 }
+
+
+.remove-link-style{
+  text-decoration:none;
+}

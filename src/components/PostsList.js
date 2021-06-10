@@ -22,7 +22,9 @@ class PostsList extends React.Component {
                     />
                   </Link>
                   <div>
-                    <div className={'post-author'}>{post.user.name}</div>
+                    <Link to={`/user/${post.user._id}`} className={'remove-link-style'}>
+                      <div className={'post-author'}>{post.user.name}</div>
+                    </Link>
                     <div className="post-time">5 minutes ago</div>
                   </div>
                 </div>
