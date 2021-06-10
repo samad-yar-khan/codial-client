@@ -7,6 +7,7 @@ import Login from './Login'
 import Register from './Register'
 import Settings from './Settings'
 import UserProfile from './UserProfile'
+import Loader from './Loader'
 
 export {
     PostsList,
@@ -17,5 +18,6 @@ export {
     Login,
     Register,
     Settings,
-    UserProfile
+    UserProfile,
+    Loader
 }

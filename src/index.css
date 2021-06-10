@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 1vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -228,7 +229,7 @@ nav .right-nav {
   line-height: 22px;
 }
 
-nav .left-div .site-logo{
+nav .left-div .site-logo {
   height: 40px;
 }
 nav .nav-links ul {
@@ -369,7 +370,7 @@ nav .nav-links ul li:hover {
 .login-signup-header {
   font-weight: 600;
   font-size: 30px;
-  color: #7439fd;;
+  color: #7439fd;
 }
 .login-form {
   background-color: #fff;
@@ -532,7 +533,25 @@ nav .nav-links ul li:hover {
   cursor: pointer;
 }
 
+.remove-link-style {
+  text-decoration: none;
+}
 
-.remove-link-style{
-  text-decoration:none;
+.loader {
+  height: vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader img {
+  height: 100px;
+  position: absolute;
+  margin-top: 200px;
+  width: 100px;
+}
+
+.App{
+  min-height: 100%;
+  width:  100%;
 }

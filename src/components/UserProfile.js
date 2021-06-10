@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clearProfileState, fetchUserProfile } from '../actions/profile';
+import {Loader} from './index'
 
 
 
@@ -51,10 +52,15 @@ class UserProfile extends React.Component {
 
   render() {
     // const { error } = this.props.auth;
-    const {user , error} = this.props.profile;
+    const {user , error ,inProgress} = this.props.profile;
     const { friend } = this.state;
+    
     // const {match : {params} } = this.props;
     // console.log(params);
+
+    if(inProgress){
+        return (<Loader />)
+    }
 
     return (
       <div className="settings">
@@ -66,7 +72,7 @@ class UserProfile extends React.Component {
         </div>
 
         {error && <div className="alert error-dailog">{error}</div>}
-        {error === false && <div className="alert success-dailog">Succesfuly Added Friend !</div>}
+        {/* {error === false && <div className="alert success-dailog">Succesfuly Added Friend !</div>} */}
         
         <div className="field">
           <div className="field-label">Email</div>
