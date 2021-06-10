@@ -6,6 +6,7 @@ import Error404 from './Error404'
 import Login from './Login'
 import Register from './Register'
 import Settings from './Settings'
+import UserProfile from './UserProfile'
 
 export {
     PostsList,
@@ -15,5 +16,6 @@ export {
     Error404,
     Login,
     Register,
-    Settings
+    Settings,
+    UserProfile
 }

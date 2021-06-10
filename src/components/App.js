@@ -6,7 +6,7 @@ import jwt_decode  from 'jwt-decode';//import everrything
 
 import { fetchPosts } from '../actions/posts';
 
-import { Home, Navbar, Error404 ,Login ,Register ,Settings} from './index';
+import { Home, Navbar, Error404 ,Login ,Register ,Settings , UserProfile} from './index';
 import { authenticateUser } from '../actions/auth';
 
 import {getAuthTokenFromLocalStorage} from '../helper/utils';
@@ -83,6 +83,11 @@ class App extends React.Component {
               component = {Settings}
               isLoggedIn = {auth.isLoggedIn}
               path = {'/settings'}
+            />
+           <PrivateRoute 
+              component = {UserProfile}
+              isLoggedIn = {auth.isLoggedIn}
+              path = {'/user/:userId'}
             />
             <Route component={Error404} />
           </Switch>
