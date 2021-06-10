@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { clearProfileState, fetchUserProfile } from '../actions/profile';
 
 
 
@@ -16,10 +17,17 @@ class UserProfile extends React.Component {
     const {match} = this.props;
 
     if(match.params.userId){
-        console.log(match.params.userId);
+        // console.log(match.params.userId);
+        this.props.dispatch(fetchUserProfile((match.params.userId)));
     }
 
   }
+  
+
+  componentWillUnmount() {
+      this.props.dispatch(clearProfileState());
+  }
+  
   
   handleChange = (feildName , value) => {
     this.setState({
@@ -42,7 +50,8 @@ class UserProfile extends React.Component {
 
 
   render() {
-    const { user  , error } = this.props.auth;
+    // const { error } = this.props.auth;
+    const {user , error} = this.props.profile;
     const { friend } = this.state;
     // const {match : {params} } = this.props;
     // console.log(params);
@@ -87,6 +96,7 @@ class UserProfile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    profile : state.profile
   };
 };
 

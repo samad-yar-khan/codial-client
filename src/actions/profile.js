@@ -1,7 +1,8 @@
 import  {
     USER_PROFILE_FAILURE,
     FETCH_USER_PROFILE,
-    USER_PROFILE_SUCCESS
+    USER_PROFILE_SUCCESS,
+    CLEAR_PROFILE_STATE
 } from './actionTypes'
 
 import {APIUrls} from '../helper/urls'
@@ -29,12 +30,17 @@ export function UserProfileFailure(error){
     }
 }
 
+export function clearProfileState(){
+    return {
+        type : CLEAR_PROFILE_STATE
+    }
+}
 
 //everytime we write an async action , it must return another func wihich ahs dispatch as argument
 //thunk
 export function fetchUserProfile(userId){
     return function(dispatch){
-        dispatchEvent(startUserProfileFetch());
+        dispatch(startUserProfileFetch());
         const url = APIUrls.fetchUser(userId);
 
         fetch(url , {

@@ -1,5 +1,5 @@
 //Post Action Types
-export const UPDATE_POSTS = "UPDATE_POSTS";
+export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 //Login Action Types
 export const LOGIN_START = 'LOGIN_START';
@@ -11,14 +11,13 @@ export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
-
 //For logging in an existing user
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 
 //For logout functionalit
-export const LOGOUT_USER = 'LOGOUT_USER'
+export const LOGOUT_USER = 'LOGOUT_USER';
 
-//whener logi fails or register fails , the error val is set in our auth state and we 
+//whener logi fails or register fails , the error val is set in our auth state and we
 //here degine an action to clear that error state upon chaging ppage
 export const CLEAR_AUTH_STATE = 'CLEAR_AUTH_STATE';
 
@@ -31,3 +30,4 @@ export const EDIT_USER = 'EDIT_USER';
 export const FETCH_USER_PROFILE = 'FETCH_USER_PROFILE';
 export const USER_PROFILE_SUCCESS = 'USER_PROFILE_SUCCESS';
 export const USER_PROFILE_FAILURE = 'USER_PROFILE_FAILURE';
+export const CLEAR_PROFILE_STATE = 'CLEAR_PROFILE_STATE';

@@ -1,7 +1,8 @@
 import {
     USER_PROFILE_FAILURE,
     USER_PROFILE_SUCCESS,
-    FETCH_USER_PROFILE
+    FETCH_USER_PROFILE,
+    CLEAR_PROFILE_STATE
 } from '../actions/actionTypes'
 
 const initialProfileState = {
@@ -33,6 +34,14 @@ export default function profile (state = initialProfileState , action){
                 ...state ,
                 inProgress : true
             };
+        case CLEAR_PROFILE_STATE :
+            return {
+                ...state ,
+                inProgress : false ,
+                user : {},
+                error : null,
+            
+            }
         default :
             return state ;
     }
