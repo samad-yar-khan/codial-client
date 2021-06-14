@@ -8,6 +8,8 @@ import Register from './Register'
 import Settings from './Settings'
 import UserProfile from './UserProfile'
 import Loader from './Loader'
+import FriendList from './FriendList'
+import FriendListItem from './FriendListItem'
 
 export {
     PostsList,
@@ -19,5 +21,7 @@ export {
     Register,
     Settings,
     UserProfile,
-    Loader
+    Loader,
+    FriendList,
+    FriendListItem
 }
