@@ -58,7 +58,7 @@ class PostsList extends React.Component {
                 </div>
 
                 <div className="post-comments-list">
-                  <div className="post-comments-item">
+                  <div className="post-comment-item">
                     <div className="post-comment-header">
                       <span className="post-comment-author">Samad</span>
                       <span className="post-comment-time">a minute ago</span>

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  height: 1vh;
+  height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -196,10 +196,15 @@ code {
 /* NAVBAR */
 .nav {
   display: flex;
+  width: 100vw;
   background: #6200ee;
-  padding: 10px 20px;
+  padding: 10px 50px;
+  top :0;
   align-items: center;
+  box-sizing: border-box;
   justify-content: space-between;
+  position: fixed;
+  z-index: 10;
 }
 .logo {
   color: #fff;
@@ -313,10 +318,12 @@ nav .nav-links ul li:hover {
 
 /* HOME AND FRIENDSLIST COMPONENT */
 .home {
-  padding: 20px 50px;
+  padding: 80px 50px;
   display: flex;
   width: 80%;
   margin: 0 auto;
+  z-index: -1;
+  box-sizing: content-box;
 }
 .home .posts-list {
   flex-grow: 0.8;
@@ -324,10 +331,13 @@ nav .nav-links ul li:hover {
 .friends-list {
   background: #fff;
   margin-left: 50px;
+  position : -webkit-sticky;
+  position: sticky;
   flex-grow: 0.2;
   height: 50vh;
   box-sizing: border-box;
   margin-top: 20px;
+  top : 15%;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   overflow-y: scroll;
@@ -381,7 +391,7 @@ nav .nav-links ul li:hover {
   justify-content: center;
   align-items: center;
   width: 30%;
-  margin: 50px auto;
+  margin: 150px auto 0px auto;
   border-radius: 6px;
 }
 .field {
@@ -427,7 +437,7 @@ nav .nav-links ul li:hover {
   background: #fff;
   padding: 30px;
   border-radius: 6px;
-  margin-top: 50px;
+  margin-top: 100px;
   margin-left: 30px;
   width: 40%;
 }
@@ -547,11 +557,12 @@ nav .nav-links ul li:hover {
 .loader img {
   height: 100px;
   position: absolute;
-  margin-top: 200px;
+  margin-top: 400px;
   width: 100px;
 }
 
 .App{
-  min-height: 100%;
-  width:  100%;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
