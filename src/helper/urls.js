@@ -14,6 +14,8 @@ export const APIUrls = {
     fetchPosts : (page =1 , limit = 5) => `${API_ROOT}/posts?page${page}&limit=${limit}`,
     editUser : ()=> `${API_ROOT}/users/edit`,
     fetchUser : (userId) => `${API_ROOT}/users/${userId}`,
-    fetchUserFriends : () => `${API_ROOT}/friendship/fetch_user_friends`
+    fetchUserFriends : () => `${API_ROOT}/friendship/fetch_user_friends`,
+    addFriend : (userId) => `${API_ROOT}/friendship/create_friendship?user_id=${userId}`,
+    removeFriend : (userId ) => `${API_ROOT}/friendship/remove_friendship?user_id=${userId}`,
 
 };
