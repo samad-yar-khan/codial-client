@@ -1,13 +1,16 @@
 import React from 'react';
-import {PostsList} from './index'
+
+import {PostsList , FriendList} from './index'
  
  class Home extends React.Component {
      render() {
-        const {posts} =  this.props;
+        const {posts , friends , isLoggedIn} =  this.props;
+    
 
          return (
              <div className='home'>
                 <PostsList posts={posts}/>
+                {isLoggedIn && <FriendList friendList={friends.friendList} error={friends.error} success={friends.success} />}
              </div>
          );
      }

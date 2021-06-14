@@ -1,6 +1,5 @@
 import {
     FETCH_FRIENDS_FAILURE,
-    FETCH_USER_FRIENDS,
     FETCH_FRIENDS_SUCCESS
 } from './actionTypes';
 
@@ -15,6 +14,7 @@ export function fetchUserFriends(){
         const url = APIUrls.fetchUserFriends();
 
         fetch(url , {
+            method : 'GET' ,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
@@ -23,11 +23,13 @@ export function fetchUserFriends(){
         .then ((response) => response.json())
         .then ((data) => {
             if(data.success){
+                console.log(data);
                 dispatch(fetchFriendSuccess(data.data.friends));
             }else{
                 dispatch(fetchFriendFailure(data.message));
             }
-        });
+        })
+        .catch((err) => console.error(err));
     }
 
 }

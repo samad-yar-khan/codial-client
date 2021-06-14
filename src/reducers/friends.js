@@ -26,9 +26,7 @@ export default function friends(state = defaultFriendsState , action){
                 success : false
             };
         default :
-            return{
-                state
-            };
+            return state
     }   
 
 };

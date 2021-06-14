@@ -10,14 +10,14 @@ const  FriendList = (props) => {
                 Friends
             </div>
 
-            { (props.FriendList && props.FriendList.length === 0) && (
+            { (props.friendList && props.friendList.length === 0) && (
                 <div className="no-friends">
                     No Friends Found !
                 </div>
             )}
 
-            {(props.FriendList && props.FriendList.length > 0 ) &&
-                props.FriendList.map((friend , key ) => (
+            {(props.friendList && props.friendList.length > 0 ) &&
+                props.friendList.map((friend , key ) => (
                     <FriendListItem friend={friend.to_user} key ={friend._id} />
                 ))
             }
