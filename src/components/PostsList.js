@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import {CreatePost} from './index'
+
 class PostsList extends React.Component {
   render() {
-    let { posts } = this.props;
+    let { posts , isLoggedIn } = this.props;
 
     return (
       <div className="posts-list">
+        {isLoggedIn && <CreatePost/>}
+
         {posts.map((post) => {
           return (
             <div className="post-wrapper" key={post._id}>

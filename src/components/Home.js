@@ -9,7 +9,7 @@ import {PostsList , FriendList} from './index'
 
          return (
              <div className='home'>
-                <PostsList posts={posts}/>
+                <PostsList posts={posts} isLoggedIn={isLoggedIn}/>
                 {isLoggedIn && <FriendList friendList={friends.friendList} error={friends.error} success={friends.success} />}
              </div>
          );

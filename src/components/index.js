@@ -10,6 +10,7 @@ import UserProfile from './UserProfile'
 import Loader from './Loader'
 import FriendList from './FriendList'
 import FriendListItem from './FriendListItem'
+import CreatePost from './CreatePost'
 
 export {
     PostsList,
@@ -23,5 +24,6 @@ export {
     UserProfile,
     Loader,
     FriendList,
-    FriendListItem
+    FriendListItem,
+    CreatePost
 }
