@@ -70,10 +70,10 @@ export function addFriendSuccess(friendship){
     }
 }
 
-export function removeFriendSuccess(friend){
+export function removeFriendSuccess(userId){
     return {
         type : REMOVE_FRIEND_SUCCESS,
-        friend : friend
+        userId : userId
     }
 }
 

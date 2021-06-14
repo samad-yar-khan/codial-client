@@ -10,7 +10,7 @@ import {
 const defaultFriendsState = {
     friendList : [],
     error : null,
-    success : false
+    success : false,
 }
 
 export default function friends(state = defaultFriendsState , action){
@@ -38,6 +38,16 @@ export default function friends(state = defaultFriendsState , action){
             return {
                 ...state,
                 error : action.error
+            }
+        case REMOVE_FRIEND_SUCCESS :
+            return {
+                ...state ,
+                friendList : state.friendList.filter((friend)=> friend.to_user._id !== action.userId)
+            }
+        case REMOVE_FRIEND_FAILURE :
+            return {
+                ...state ,
+                error : action.message
             }
         default :
             return state

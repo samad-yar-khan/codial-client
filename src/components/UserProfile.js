@@ -15,7 +15,8 @@ class UserProfile extends React.Component {
     this.state = {
       isFriend:false,
       success : null ,
-      error : null
+      error : null,
+      successMessage : ""
     };
   }
 
@@ -60,7 +61,7 @@ class UserProfile extends React.Component {
   };
 
   handleAddFriend = async () => {
-    console.log("Clicked")
+   
       const userId = this.props.match.params.userId;
       const Url = APIUrls.addFriend(userId);
 
@@ -79,8 +80,10 @@ class UserProfile extends React.Component {
           this.props.dispatch(addFriendSuccess(data.data.friendship));
           this.setState({
             success:true,
-            isFriend : true
+            isFriend : true,
+            successMessage : "Added Friend Successfully !"
           })
+
         }else{
           this.props.dispatch(addFriendFailure(data.messsage));  
           this.setState({
@@ -95,17 +98,46 @@ class UserProfile extends React.Component {
   }
 
 
-  handleRemoveFriend = ()=>{
-    this.setState({
-        isFriend : false
-    })
+  handleRemoveFriend =async ()=>{
+    const userId = this.props.match.params.userId;
+    const Url = APIUrls.removeFriend(userId);
+
+    try {
+      const options = {
+        method : "POST",
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
+        }
+      };
+      const response = await fetch(Url , options);
+      const data = await response.json();
+
+      if(data.success){
+        this.props.dispatch(removeFriendSuccess(userId));
+        this.setState({
+          success:true,
+          isFriend : false,
+          successMessage : "Removed Friend Successfully !"
+        })
+      }else{
+        this.props.dispatch(removeFriendFailure(data.messsage));  
+        this.setState({
+          success : false,
+          error : data.messsage
+        })
+      }   
+    } catch (error) {
+      console.error(error);
+    }
+   
   }
 
 
   render() {
     // const { error } = this.props.auth;
     const {user , error ,inProgress} = this.props.profile;
-    const { isFriend } = this.state;
+    const { isFriend , successMessage } = this.state;
     
     // const {match : {params} } = this.props;
     // console.log(params);
@@ -145,7 +177,7 @@ class UserProfile extends React.Component {
           )}
         </div>
         {this.state.error !== null && <div className="alert error-dailog">{error}</div>}
-        {this.state.success === true && <div className="alert success-dailog">{this.state.isFriend? "Added Friend Successfully !" : "Removed Friend SuccessFully !"}</div>}
+        {this.state.success === true && <div className="alert success-dailog">{successMessage}</div>}
 
         
       </div>
