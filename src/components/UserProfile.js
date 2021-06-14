@@ -10,25 +10,43 @@ class UserProfile extends React.Component {
     super(props);
 
     this.state = {
-      friend:false
+      isFriend:false
     };
   }
 
   componentDidMount() {
-    const {match} = this.props;
+    const {match } = this.props;
+    
 
     if(match.params.userId){
         // console.log(match.params.userId);
         this.props.dispatch(fetchUserProfile((match.params.userId)));
     }
+    this.checkIfUserIsAFriend();
 
   }
+
   
 
   componentWillUnmount() {
       this.props.dispatch(clearProfileState());
   }
   
+  checkIfUserIsAFriend(){
+
+    const {match , friends} = this.props;
+
+    if(match.params.userId){
+      let index = friends.friendList.map((friend)=>friend.to_user._id).indexOf(match.params.userId);
+
+      if(index!==-1){
+        this.setState({
+          isFriend : true
+        })
+      }
+    }
+
+  }
   
   handleChange = (feildName , value) => {
     this.setState({
@@ -38,14 +56,14 @@ class UserProfile extends React.Component {
 
   handleAddFriend = () => {
     this.setState({
-        friend : true
+        isFriend : true
     })
   }
 
 
   handleRemoveFriend = ()=>{
     this.setState({
-        friend : false
+        isFriend : false
     })
   }
 
@@ -53,7 +71,7 @@ class UserProfile extends React.Component {
   render() {
     // const { error } = this.props.auth;
     const {user , error ,inProgress} = this.props.profile;
-    const { friend } = this.state;
+    const { isFriend } = this.state;
     
     // const {match : {params} } = this.props;
     // console.log(params);
@@ -86,7 +104,7 @@ class UserProfile extends React.Component {
 
         
         <div className="btn-grp">
-          {!friend ? (
+          {!isFriend ? (
             <button className="button save-btn" onClick={this.handleAddFriend}>Add Friend</button>
           ) : (
             <button className="button edit-btn" onClick={this.handleRemoveFriend}>Remove Friend</button>
@@ -102,7 +120,8 @@ class UserProfile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    profile : state.profile
+    profile : state.profile,
+    friends : state.friends
   };
 };
 
