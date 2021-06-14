@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clearProfileState, fetchUserProfile } from '../actions/profile';
+import { APIUrls } from '../helper/urls';
 import {Loader} from './index'
+import {getAuthTokenFromLocalStorage} from '../helper/utils'
+import {addFriendSuccess , addFriendFailure , removeFriendSuccess , removeFriendFailure} from '../actions/friends'
 
 
 
@@ -10,7 +13,9 @@ class UserProfile extends React.Component {
     super(props);
 
     this.state = {
-      isFriend:false
+      isFriend:false,
+      success : null ,
+      error : null
     };
   }
 
@@ -54,10 +59,39 @@ class UserProfile extends React.Component {
     })
   };
 
-  handleAddFriend = () => {
-    this.setState({
-        isFriend : true
-    })
+  handleAddFriend = async () => {
+    console.log("Clicked")
+      const userId = this.props.match.params.userId;
+      const Url = APIUrls.addFriend(userId);
+
+      try {
+        const options = {
+          method : "POST",
+          headers : {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
+          }
+        };
+        const response = await fetch(Url , options);
+        const data = await response.json();
+  
+        if(data.success){
+          this.props.dispatch(addFriendSuccess(data.data.friendship));
+          this.setState({
+            success:true,
+            isFriend : true
+          })
+        }else{
+          this.props.dispatch(addFriendFailure(data.messsage));  
+          this.setState({
+            success : false,
+            error : data.messsage
+          })
+        }   
+      } catch (error) {
+        console.error(error);
+      }
+     
   }
 
 
@@ -110,6 +144,8 @@ class UserProfile extends React.Component {
             <button className="button edit-btn" onClick={this.handleRemoveFriend}>Remove Friend</button>
           )}
         </div>
+        {this.state.error !== null && <div className="alert error-dailog">{error}</div>}
+        {this.state.success === true && <div className="alert success-dailog">{this.state.isFriend? "Added Friend Successfully !" : "Removed Friend SuccessFully !"}</div>}
 
         
       </div>

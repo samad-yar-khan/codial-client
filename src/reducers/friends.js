@@ -1,6 +1,10 @@
 import {
     FETCH_FRIENDS_FAILURE ,
-    FETCH_FRIENDS_SUCCESS
+    FETCH_FRIENDS_SUCCESS,
+    ADD_FRIEND_FAILURE,
+    ADD_FRIEND_SUCCESS,
+    REMOVE_FRIEND_FAILURE,
+    REMOVE_FRIEND_SUCCESS
 } from '../actions/actionTypes'
 
 const defaultFriendsState = {
@@ -25,6 +29,16 @@ export default function friends(state = defaultFriendsState , action){
                 error : action.error,
                 success : false
             };
+        case  ADD_FRIEND_SUCCESS :
+            return{
+                ...state ,
+                friendList : state.friendList.concat(action.friendship)
+            }
+        case ADD_FRIEND_FAILURE :
+            return {
+                ...state,
+                error : action.error
+            }
         default :
             return state
     }   
