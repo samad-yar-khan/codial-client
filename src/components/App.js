@@ -10,6 +10,7 @@ import { Home, Navbar, Error404 ,Login ,Register ,Settings , UserProfile} from '
 import { authenticateUser } from '../actions/auth';
 
 import {getAuthTokenFromLocalStorage} from '../helper/utils';
+import { fetchUserFriends } from '../actions/friends';
 
 // const Settings = () => <div>SETTINGS</div>;
 
@@ -45,6 +46,8 @@ class App extends React.Component {
         email : user.email,
         _id : user._id
       }));
+
+      this.props.dispatch(fetchUserFriends());
     }
     //now if we found user using a jwt token we will dipatch a diferet actio
 
@@ -52,7 +55,7 @@ class App extends React.Component {
 
   render() {
     console.log('PROPS ', this.props);
-    const { posts , auth} = this.props;
+    const { posts , auth , friends} = this.props;
 
     return (
       <div className="App">
@@ -66,7 +69,7 @@ class App extends React.Component {
               path={'/'}
               render={(props) => {
                 //the props here are basically the default props passed by the router
-                return <Home {...props} posts={posts} />;
+                return <Home {...props} posts={posts} isLoggedIn={auth.isLoggedIn} friends={friends}/>;
               }}
             />
             <Route
@@ -101,6 +104,7 @@ function mapStateToProps(state) {
   return {
     posts: state.posts,
     auth: state.auth,
+    friends: state.friends
   };
 }
 

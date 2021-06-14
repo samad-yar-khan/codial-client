@@ -5,7 +5,7 @@ import {FriendListItem} from './index';
 
 const  FriendList = (props) => {
     return (
-        <div className="friend-list">
+        <div className="friends-list">
             <div className="header">
                 Friends
             </div>

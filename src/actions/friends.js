@@ -8,7 +8,7 @@ import { APIUrls } from '../helper/urls';
 import { getAuthTokenFromLocalStorage} from '../helper/utils';
 
 
-export function fetchFriends(){
+export function fetchUserFriends(){
 
     return function(dispatch){
 
