@@ -45,13 +45,8 @@ class CreatePost extends React.Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  return {
-    posts : state.posts
-  }
-}
 
-const ConnectedCreatePostComponent = connect(mapStateToProps)(CreatePost);
+const ConnectedCreatePostComponent = connect()(CreatePost);
 
 export default ConnectedCreatePostComponent;
 
