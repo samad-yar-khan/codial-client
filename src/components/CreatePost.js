@@ -1,10 +1,13 @@
 import React from 'react';
+import {createPost} from '../actions/posts'
+import { connect } from 'react-redux';
 
+ 
 class CreatePost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: '',
+      content: "",
     };
   }
 
@@ -15,7 +18,12 @@ class CreatePost extends React.Component {
   };
 
   handleOnClick = () => {
-    //action to d
+
+
+  
+      this.props.dispatch(createPost(this.state.content));
+    
+
   };
 
   render() {
@@ -37,4 +45,13 @@ class CreatePost extends React.Component {
   }
 }
 
-export default CreatePost;
+const mapStateToProps = (state)=>{
+  return {
+    posts : state.posts
+  }
+}
+
+const ConnectedCreatePostComponent = connect(mapStateToProps)(CreatePost);
+
+export default ConnectedCreatePostComponent;
+

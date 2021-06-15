@@ -1,6 +1,7 @@
 //action names
 import {ADD_POST, UPDATE_POSTS} from './actionTypes'
 import {APIUrls} from '../helper/urls'
+import  {getAuthTokenFromLocalStorage ,getFormbody} from '../helper/utils'
 
 
 
@@ -38,4 +39,34 @@ export function  addPost(post){
         type : ADD_POST,
         post : post
     }
+}
+
+export function createPost(content){
+
+    return function(dispatch){
+        const Url = APIUrls.createPost();
+        
+        fetch(Url , {
+            method : "POST" ,
+             headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
+            },
+            body : getFormbody({
+                content : content
+            })
+        })
+        .then((response) => response.json())
+        .then((data)=>{
+            if(data.success){
+                dispatch(addPost(data.data.post));
+            }else{
+                console.log(data.message);
+            }
+        })
+        .catch((err)=>{
+            console.error(err);
+        });
+    }
+
 }
