@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import {CreatePost , CreateComment} from './index'
+import {CreatePost , CreateComment , Comment} from './index'
 
 class PostsList extends React.Component {
   render() {
@@ -60,15 +60,9 @@ class PostsList extends React.Component {
                 <CreateComment postId={post._id}/>
 
                 <div className="post-comments-list">
-                  <div className="post-comment-item">
-                    <div className="post-comment-header">
-                      <span className="post-comment-author">Samad</span>
-                      <span className="post-comment-time">a minute ago</span>
-                      <span className="post-comment-likes">22</span>
-                    </div>
-
-                    <div className="post-comment-content">Random Comment</div>
-                  </div>
+                  { post.comments.map((comment)=>{
+                    return <Comment comment={comment} key={comment._id}/>
+                  })}
                 </div>
               </div>
             </div>
@@ -78,7 +72,7 @@ class PostsList extends React.Component {
     );
   }
 }
-
+ 
 //we beed prop types because we may change the type of prop beng passed over time and our app may break
 //so if our app crashed dur to change in type ofprops , this will through an erro
 PostsList.propTypes = {
