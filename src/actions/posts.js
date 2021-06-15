@@ -1,5 +1,5 @@
 //action names
-import {UPDATE_POSTS} from './actionTypes'
+import {ADD_POST, UPDATE_POSTS} from './actionTypes'
 import {APIUrls} from '../helper/urls'
 
 
@@ -30,4 +30,12 @@ export function updatePosts(posts){
         posts
     }
 
+}
+
+//this will be used once the api has added our post successfully
+export function  addPost(post){
+    return {
+        type : ADD_POST,
+        post : post
+    }
 }
