@@ -108,3 +108,11 @@ export function addComment(comment , postId){
         postId :postId
     }
 }
+
+export function addLikeToStore(likableId , likeType , userId){
+    return (dispatch)=>{
+
+        
+
+    }
+}

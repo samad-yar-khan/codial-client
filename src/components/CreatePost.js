@@ -33,6 +33,7 @@ class CreatePost extends React.Component {
           className="add-post"
           onChange={this.handleChange}
           value={this.state.content}
+          placeholder="Want to share something with your friends ?" 
         />
 
         <div>
