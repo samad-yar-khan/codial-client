@@ -128,7 +128,11 @@ export function addLikeToStore(likeableId , likeType , userId){
         .then((data)=>{
 
             if(data.success){
-                
+                if(likeType ===  'post'){
+                    dispatch(togglePostLike(likeableId , userId))
+                }else if(likeType  === 'comment'){
+                    dispatch(toggleCommentLike(likeableId , userId))
+                }
             }
         })
         .catch((err) => {
@@ -145,6 +149,14 @@ export function togglePostLike( postId , userId ){
     return {
         type : UPDATE_POST_LIKES,
         postId : postId ,
+        userId : userId
+    }
+}
+
+export function toggleCommentLike( commentId , userId ){
+    return {
+        type : UPDATE_COMMENT_LIKES,
+        commentId : commentId ,
         userId : userId
     }
 }

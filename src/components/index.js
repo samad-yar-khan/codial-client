@@ -13,6 +13,7 @@ import FriendListItem from './FriendListItem'
 import CreatePost from './CreatePost'
 import CreateComment from './CreateComment'
 import Comment from './Comment'
+import Post from './Post'
 
 export {
     PostsList,
@@ -29,5 +30,6 @@ export {
     FriendListItem,
     CreatePost,
     CreateComment,
-    Comment
+    Comment,
+    Post
 }
