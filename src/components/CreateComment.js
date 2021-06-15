@@ -22,11 +22,18 @@ class CreateComment extends React.Component {
         if(this.state.commentContent.trim()){
             this.props.dispatch(createComment(this.state.commentContent  , this.props.postId));
         }
+
+        this.setState({
+            commentContent:""
+        })
     }
 
     handleAddCommentViaEnter= (e)=>{
         if(this.state.commentContent.trim()&& e.key === 'Enter'){
             this.props.dispatch(createComment(this.state.commentContent  , this.props.postId))
+            this.setState({
+                commentContent:""
+            })
         }
     }
     
