@@ -18,12 +18,12 @@ class CreatePost extends React.Component {
   };
 
   handleOnClick = () => {
-
-
-  
+    //trim will remove the white space efore and after a string , so for empty strings we get  null string 
+   //only publiish non empty strings
+   
+     if(this.state.content.trim()){
       this.props.dispatch(createPost(this.state.content));
-    
-
+    }
   };
 
   render() {

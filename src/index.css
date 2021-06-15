@@ -197,7 +197,7 @@ code {
 .nav {
   display: flex;
   width: 100vw;
-  background: #6200ee;
+  background: linear-gradient(90deg, #020024 0%, #322cf8 49%, #985cf9 100%);
   padding: 10px 50px;
   top :0;
   align-items: center;
@@ -513,7 +513,7 @@ nav .nav-links ul li:hover {
   padding: 10px;
   border-top: 1px solid #d0d0d0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .create-post textarea {
   height: 90px;
@@ -527,15 +527,14 @@ nav .nav-links ul li:hover {
   border-top-left-radius: 3px;
 }
 #add-post-btn {
-  width: 112px;
-  height: 42px;
-  left: 111.5px;
-  top: 0px;
-  background: #7439fd;
-  border-radius: 3px;
-  
-  color: #fff;
+  background-color: #322cf8;
+  margin-top: 10px;
+  padding: 10px;
   font-size: 16px;
+  outline: none;
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
 #add-post-btn:focus,
 .create-post textarea:focus {
@@ -544,6 +543,21 @@ nav .nav-links ul li:hover {
 #add-post-btn:hover {
   cursor: pointer;
 }
+
+#add-comment-btn{
+  background-color: #322cf8;
+  margin-top: 10px;
+  padding: 8px;
+  outline: none;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#add-comment-btn:hover {
+  cursor: pointer; }
+  #add-comment-btn:active {
+  transform: scale(0.98); }
 
 .remove-link-style {
   text-decoration: none;

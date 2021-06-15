@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import {CreatePost} from './index'
+import {CreatePost , CreateComment} from './index'
 
 class PostsList extends React.Component {
   render() {
@@ -57,9 +57,7 @@ class PostsList extends React.Component {
                   </div>
                 </div>
 
-                <div className="post-comment-box">
-                  <input placeholder="What are your thoughts ?" />
-                </div>
+                <CreateComment postId={post._id}/>
 
                 <div className="post-comments-list">
                   <div className="post-comment-item">

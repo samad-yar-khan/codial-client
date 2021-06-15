@@ -11,6 +11,7 @@ import Loader from './Loader'
 import FriendList from './FriendList'
 import FriendListItem from './FriendListItem'
 import CreatePost from './CreatePost'
+import CreateComment from './CreateComment'
 
 export {
     PostsList,
@@ -25,5 +26,6 @@ export {
     Loader,
     FriendList,
     FriendListItem,
-    CreatePost
+    CreatePost,
+    CreateComment
 }
