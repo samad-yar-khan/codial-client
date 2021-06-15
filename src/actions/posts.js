@@ -71,6 +71,37 @@ export function createPost(content){
 
 }
 
+//creating comment
+export function createComment (commentContent , postId){
+
+    return function(dispatch){
+        const Url = APIUrls.createComment();
+        
+        fetch(Url , {
+            method : "POST" ,
+             headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
+            },
+            body : getFormbody({
+                content : commentContent,
+                post_id : postId
+            })
+        })
+        .then((res)=> res.json())
+        .then((data) => {
+            console.log(data);
+
+            if(data.success){
+                dispatch(addComment(data.data.comment , data.data.comment.post));
+            }else{
+                console.error(data.message);
+            }
+        })
+    }
+
+}
+
 export function addComment(comment , postId){
     return {
         type : ADD_COMMENT ,

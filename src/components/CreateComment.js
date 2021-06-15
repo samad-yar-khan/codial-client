@@ -1,4 +1,6 @@
 import React from 'react';
+import {createComment} from '../actions/posts';
+import {connect} from 'react-redux';
 
 class CreateComment extends React.Component {
 
@@ -18,13 +20,13 @@ class CreateComment extends React.Component {
 
     handleAddComment= ()=>{
         if(this.state.commentContent.trim()){
-            console.log(this.state.commentContent.trim());
+            this.props.dispatch(createComment(this.state.commentContent  , this.props.postId));
         }
     }
 
     handleAddCommentViaEnter= (e)=>{
         if(this.state.commentContent.trim()&& e.key === 'Enter'){
-            console.log(this.state.commentContent.trim());
+            this.props.dispatch(createComment(this.state.commentContent  , this.props.postId))
         }
     }
     
@@ -49,4 +51,7 @@ class CreateComment extends React.Component {
     }
 }
 
-export default CreateComment;
+
+
+
+export default connect()(CreateComment);
