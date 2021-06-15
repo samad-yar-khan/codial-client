@@ -128,9 +128,9 @@ export function addLikeToStore(likeableId , likeType , userId){
         .then((data)=>{
 
             if(data.success){
-                if(likeType ===  'post'){
+                if(likeType ===  'Post'){
                     dispatch(togglePostLike(likeableId , userId))
-                }else if(likeType  === 'comment'){
+                }else if(likeType  === 'Comment'){
                     dispatch(toggleCommentLike(likeableId , userId))
                 }
             }
