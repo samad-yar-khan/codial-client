@@ -1,5 +1,5 @@
 //action names
-import {ADD_POST, UPDATE_POSTS} from './actionTypes'
+import {ADD_POST, UPDATE_POSTS , ADD_COMMENT} from './actionTypes'
 import {APIUrls} from '../helper/urls'
 import  {getAuthTokenFromLocalStorage ,getFormbody} from '../helper/utils'
 
@@ -69,4 +69,12 @@ export function createPost(content){
         });
     }
 
+}
+
+export function addComment(comment , postId){
+    return {
+        type : ADD_COMMENT ,
+        comment : comment ,
+        postId :postId
+    }
 }
