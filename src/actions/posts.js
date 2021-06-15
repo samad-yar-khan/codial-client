@@ -1,5 +1,5 @@
 //action names
-import {ADD_POST, UPDATE_POSTS , ADD_COMMENT} from './actionTypes'
+import {ADD_POST, UPDATE_POSTS , ADD_COMMENT ,UPDATE_POST_LIKES ,UPDATE_COMMENT_LIKES} from './actionTypes'
 import {APIUrls} from '../helper/urls'
 import  {getAuthTokenFromLocalStorage ,getFormbody} from '../helper/utils'
 
@@ -97,6 +97,9 @@ export function createComment (commentContent , postId){
                 console.error(data.message);
             }
         })
+        .catch((err)=>{
+            console.error(err);
+        })
     }
 
 }
@@ -109,10 +112,39 @@ export function addComment(comment , postId){
     }
 }
 
-export function addLikeToStore(likableId , likeType , userId){
+export function addLikeToStore(likeableId , likeType , userId){
     return (dispatch)=>{
 
+        const Url = APIUrls.toggleLike(likeableId , likeType);
+        
+        fetch(Url , {
+            method : "POST" ,
+            headers: {
+               'Content-Type': 'application/x-www-form-urlencoded',
+               Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
+           }
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+
+            if(data.success){
+                
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+        })
         
 
+    }
+}
+
+//we are seding user id becasue our likes array constest of an array of user_id and the id signfiies that the use has liked the ppost
+
+export function togglePostLike( postId , userId ){
+    return {
+        type : UPDATE_POST_LIKES,
+        postId : postId ,
+        userId : userId
     }
 }
