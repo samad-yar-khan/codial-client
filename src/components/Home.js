@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PostsList , FriendList} from './index'
+import {PostsList , FriendList , Chat} from './index'
  
  class Home extends React.Component {
      render() {
@@ -11,6 +11,7 @@ import {PostsList , FriendList} from './index'
              <div className='home'>
                 <PostsList posts={posts} isLoggedIn={isLoggedIn}/>
                 {isLoggedIn && <FriendList friendList={friends.friendList} error={friends.error} success={friends.success} />}
+                <Chat />
              </div>
          );
      }
