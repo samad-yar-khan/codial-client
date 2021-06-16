@@ -12,7 +12,8 @@ class Chat extends Component {
       typedMessage: '',
       showChat : true
     };
-    this.socket = io.connect('http://codeial.codingninjas.com:5000');
+    this.socket = io();
+    this.socket = this.socket.connect('http://codeial.codingninjas.com:5000');
     this.userEmail = props.user.user.email;
 
 
@@ -26,7 +27,7 @@ class Chat extends Component {
     const socketConnection = this.socket;
     const self = this;
     console.log(this.socket);
-    this.socket.on('connection' , function(){
+    this.socket.on('connect' , function(){
 
       console.log("Connectes Socket!");
       
