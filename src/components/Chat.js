@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {io} from 'socket.io-client'
+import io from 'socket.io-client'
 import {connect} from 'react-redux'
 import '../chat.css';
 
@@ -13,8 +13,8 @@ class Chat extends Component {
       showChat : true
     };
     this.socket = io.connect('http://codeial.codingninjas.com:5000');
-    this.userEmail = props.user.email;
-    console.log('user~~~~~~~~~~' , props.user.email);
+    this.userEmail = props.user.user.email;
+
 
     if(this.userEmail){
       this.setupConnection();
@@ -22,19 +22,20 @@ class Chat extends Component {
   }
 
   setupConnection=()=>{
-
-    const socketConnection = this.socket();
+   
+    const socketConnection = this.socket;
     const self = this;
 
-    socketConnection.on('connect' , ()=>{
+    this.socket.on('connect' , function(){
+
       console.log("Connectes Socket!");
       
-      socketConnection.emit('join-room', {
+      socketConnection.emit('join_room', {
         user_email : this.userEmail ,
         chatroom : 'codeial'
       });
 
-      socketConnection.on('user-join' , (data)=> {
+      socketConnection.on('user_joined' , function(data){
         console.log('new user joined !' , data);
 
       }) ;
@@ -42,7 +43,7 @@ class Chat extends Component {
 
     });
 
-    socketConnection.on('receive-message' , (data)=>{
+    socketConnection.on('receive_message' , function(data){
       console.log( 'message',data);
       const {messages} = self.state;
       let messageObject = {};
@@ -53,7 +54,8 @@ class Chat extends Component {
       }
 
       self.setState({
-        messages : [...messages ,messageObject]
+        messages : [...messages ,messageObject],
+        
       })
     })
   }
@@ -63,6 +65,17 @@ class Chat extends Component {
     this.setState({
       showChat : !showChat
     })
+  }
+
+  handleSubmit=()=>{
+    const {typedMessage} = this.state;
+    if(typedMessage.trim() && this.userEmail){
+      this.socket.emit('send_message' , {
+        message : typedMessage.trim(),
+        user_email : this.userEmail,
+        chatroom:'codeial'
+      });
+    }
   }
 
   render() {
