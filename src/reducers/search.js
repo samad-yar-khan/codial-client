@@ -11,7 +11,7 @@ const defaultSearchState = {
     inProgress : false
 }
 
-export function search (state = defaultSearchState , actions){
+export default function search (state = defaultSearchState , action){
     switch (action.type){
 
         case FETCH_SEARCH_RESULT :
@@ -23,7 +23,7 @@ export function search (state = defaultSearchState , actions){
             return {
                 ...state ,
                 inProgress:false,
-                users : actions.users,
+                users : action.users,
                 error : false
             }
         }
@@ -31,7 +31,7 @@ export function search (state = defaultSearchState , actions){
             return {
                 ...state ,
                 inProgress:false,
-                error : actions.error
+                error : action.error
             }
         default :
             return state; 
