@@ -39,8 +39,10 @@
   margin: 8px;
   padding: 10px;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 12px;
   position: relative;
+  max-width :80%;
+  width :fit-content;
 }
 .chat-messages .other-chat:after {
   content: '';
@@ -58,6 +60,7 @@
 }
 .chat-messages .self-chat {
   background: #b0ffb3;
+  align-self: flex-end;
 }
 .chat-messages .self-chat:after {
   content: '';

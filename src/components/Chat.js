@@ -8,7 +8,11 @@ class Chat extends Component {
     super(props);
 
     this.state = {
-      messages: [], // {content: 'some message', self: true}
+      messages: [
+        {content : "Her can you help me with this codechef problem ?" , self:false} ,
+        {content : "yeah Sure !" , self :true},
+        {content : "Whats the issue ? " , self :true}
+      ], // {content: 'some message', self: true}
       typedMessage: '',
       showChat : true
     };
@@ -99,7 +103,7 @@ class Chat extends Component {
           {messages.map((message) => (
             <div
               className={
-                messages.self
+                message.self
                   ? 'chat-bubble self-chat'
                   : 'chat-bubble other-chat'
               }
