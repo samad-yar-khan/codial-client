@@ -11,7 +11,7 @@ import {PostsList , FriendList , Chat} from './index'
              <div className='home'>
                 <PostsList posts={posts} isLoggedIn={isLoggedIn}/>
                 {isLoggedIn && <FriendList friendList={friends.friendList} error={friends.error} success={friends.success} />}
-                <Chat />
+                {isLoggedIn && <Chat />}
              </div>
          );
      }
