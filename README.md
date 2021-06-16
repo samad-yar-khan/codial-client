@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+<h1 align="center">
+     Codial For Devs 
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<blockquote align="center">
+  <b><i>
+    This is a social media-platform for developers where they can get access to communities for different tech stacks. Aim is to make the platform similar to StackOverflow but with beginner friendly doubts , communities and access to chat feature with mentors .
+  </i></b>
+</blockquote>
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+To run the Web Application on your local system download Node.js - https://nodejs.org/en/download/ . This will give you access to the node package manager which is essential to run the project .
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 📌 Setting up project using `npm` :
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Open this cloned folder in the text editor of your choice.
+2. If you want to use the project using `npm` then that comes alongside when you download and install node js.
 
-### `npm test`
+### 🚩 Running in Development mode :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Open the terminal and type in `npm install`, to install all the dependencies.
+2. Run: `npm start`
+3. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+4. The page will reload if you make edits.
 
-### `npm run build`
+### 🚩 Testing changes :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. After doing changes type `npm test`. This launches the test runner in the interactive watch mode.
+2. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🚩 Building project :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Run the command `npm run build`
+2. Builds the app for production to the `build` folder.
+3. It correctly bundles React in production mode and optimizes the build for the best performance.
+4. The build is minified and the filenames include the hashes.
+   Your app is ready to be deployed!
+5. See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+After typing `npm start` in the terminal , the project can be used opened on [http://localhost:3000](http://localhost:3000).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1)Home Page
+The home page will display a page with a list of posts by different users on the platform , you must register/login to post .
+<img src='https://user-images.githubusercontent.com/70485812/122304535-0636ed00-cf23-11eb-9271-81d7eda82a9c.PNG'/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 2)SignIn / Register
+Sign In or register to get access to chat , add friends or publish posts.
+<img src='https://user-images.githubusercontent.com/70485812/122304659-35e5f500-cf23-11eb-8aed-ef267d411a31.PNG' />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 3)Search Users
+You will be able to search users once you are logged in .
+<img src='https://user-images.githubusercontent.com/70485812/122304773-6463d000-cf23-11eb-992e-d190edb8e96f.PNG' />
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 4)Add Friend
+Add users as friends 
+<img src='https://user-images.githubusercontent.com/70485812/122305303-477bcc80-cf24-11eb-98b8-c5fea819d8f9.PNG'/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 5)Chat with your friends
+Chat with all your friends !
+<img src='https://user-images.githubusercontent.com/70485812/122305415-77c36b00-cf24-11eb-8709-32a4763d1e73.PNG'/>
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.Please make sure to update tests as appropriate.
+### 📌 Prerequisites
 
-### Making a Progressive Web App
+### 💻 1. System requirement :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Any system with basic configuration.
+2. Operating System : Any (Windows / Linux / Mac).
 
-### Advanced Configuration
+### 💿 2. Software requirement :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Updated browser
+2. Node.js installed (If not download it [here](https://nodejs.org/en/download/)).
+3. Any text editor of your choice.
 
-### Deployment
+### ⚡ 3. Skill set :
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Knowledge of git & github.
+2. JavaScript
+3. [ReactJS](https://reactjs.org/)
+4. WebSockets using Socket.io (Optional)
+5. Authentication Basics (Optional)
 
-### `npm run build` fails to minify
+## Features In Pipeline 
+  
+1. Making Seperate Chats for Different Technologies 
+2. Adding Community Pages 
+3. Adding a like feature for comments 
+4. Adding Tags and Categories to Posts 
+5. Making a new logo
+6. Handling loaders for publishing new post and comments 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Server Side
+
+The project was origianlly made using EJS , Node.js  and Express.js and has recently been migrated to ReactJS and Redux , hence some of the APIs are yet to be made . Please  head over to the [codial-sever](https://github.com/samad-yar-khan/codial) project if you are into Node.js and Express.js .
+
