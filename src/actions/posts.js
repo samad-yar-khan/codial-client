@@ -15,7 +15,7 @@ export function fetchPosts(){
                 return response.json();
             })
             .then((data)=>{
-                console.log(data);
+                // console.log(data);
                 dispatch(updatePosts(data.data.posts));
             })
             
@@ -61,7 +61,7 @@ export function createPost(content){
             if(data.success){
                 dispatch(addPost(data.data.post));
             }else{
-                console.log(data.message);
+                console.error(data.message);
             }
         })
         .catch((err)=>{

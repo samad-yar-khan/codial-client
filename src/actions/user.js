@@ -28,7 +28,7 @@ export function editUser(userId , name , password , confirmPassword){
         })
         .then((response)=> response.json())
         .then((data) => {
-            console.log('user edit data',data);
+            // console.log('user edit data',data);
             if(data.success){
                 dispatch(editUserSuccessful(data.data.user));
                 if(data.data.token){

@@ -53,7 +53,7 @@ export function login(email, password) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.success) {
           //save user
           // localStorage.setItem('token', data.data.token);
@@ -88,7 +88,7 @@ export function signin(email, password, confirm_password, name) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.success) {
           //save user
           localStorage.setItem('token', data.data.token);
@@ -99,7 +99,7 @@ export function signin(email, password, confirm_password, name) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 }

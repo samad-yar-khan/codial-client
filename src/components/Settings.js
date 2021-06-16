@@ -28,8 +28,8 @@ class Settings extends React.Component {
   handleSave = () => {
     const {password , name , confirmPassword} = this.state;
     const {user } = this.props.auth;
-    console.log(user.id);
-    console.log("click Save !");
+    // console.log(user.id);
+    // console.log("click Save !");
     this.props.dispatch(editUser(user._id , name , password , confirmPassword));    
     
   }

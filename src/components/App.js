@@ -40,7 +40,7 @@ class App extends React.Component {
     const token = getAuthTokenFromLocalStorage();
     if(token){
       const user = jwt_decode(token);
-      console.log(user);
+      // console.log(user);
       this.props.dispatch(authenticateUser({
         name : user.name,
         email : user.email,
@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('PROPS ', this.props);
+    // console.log('PROPS ', this.props);
     const { posts , auth , friends} = this.props;
 
     return (

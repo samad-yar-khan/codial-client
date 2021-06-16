@@ -34,8 +34,8 @@ class Login extends React.Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     const {email ,  password} = this.state;
-    console.log('email' , email );
-    console.log('pass' , password)
+    // console.log('email' , email );
+    // console.log('pass' , password)
 
     // console.log("email" , this.emailInputRef);
     // console.log("pass" , this.passwordInputRef);
