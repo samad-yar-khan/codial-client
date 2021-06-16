@@ -45,7 +45,7 @@ export function searchResultSuccess(users){
 export function searchResultFailure(err){
     return {
         type : FETCH_SEARCH_FAILURE,
-        error : error
+        error : err
     }
 }
 
