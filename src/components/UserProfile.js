@@ -2,148 +2,157 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { clearProfileState, fetchUserProfile } from '../actions/profile';
 import { APIUrls } from '../helper/urls';
-import {Loader} from './index'
-import {getAuthTokenFromLocalStorage} from '../helper/utils'
-import {addFriendSuccess , addFriendFailure , removeFriendSuccess , removeFriendFailure} from '../actions/friends'
-
-
+import { Loader } from './index';
+import { getAuthTokenFromLocalStorage } from '../helper/utils';
+import {
+  addFriendSuccess,
+  addFriendFailure,
+  removeFriendSuccess,
+  removeFriendFailure,
+} from '../actions/friends';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isFriend:false,
-      success : null ,
-      error : null,
-      successMessage : ""
+      isFriend: false,
+      success: null,
+      error: null,
+      successMessage: '',
     };
   }
 
   componentDidMount() {
-    const {match } = this.props;
-    
+    const { match } = this.props;
 
-    if(match.params.userId){
-        // console.log(match.params.userId);
-        this.props.dispatch(fetchUserProfile((match.params.userId)));
+    if (match.params.userId) {
+      // console.log(match.params.userId);
+      this.props.dispatch(fetchUserProfile(match.params.userId));
     }
     this.checkIfUserIsAFriend();
-
   }
 
-  
+  //solving the search issue to get new user on clicking search ite when already on profile
+  componentDidUpdate(prevProps) {
+    const {
+      match: { params: prevParams },
+    } = prevProps;
+
+    const {
+      match: { params: CurrParams },
+    } = this.props;
+
+    if (prevParams && CurrParams && CurrParams.userId !== prevParams.userId) {
+      this.props.dispatch(fetchUserProfile(CurrParams.userId));
+      this.checkIfUserIsAFriend();
+    }
+  }
 
   componentWillUnmount() {
-      this.props.dispatch(clearProfileState());
+    this.props.dispatch(clearProfileState());
   }
-  
-  checkIfUserIsAFriend(){
 
-    const {match , friends} = this.props;
+  checkIfUserIsAFriend() {
+    const { match, friends } = this.props;
 
-    if(match.params.userId){
-      let index = friends.friendList.map((friend)=>friend.to_user._id).indexOf(match.params.userId);
+    if (match.params.userId) {
+      let index = friends.friendList
+        .map((friend) => friend.to_user._id)
+        .indexOf(match.params.userId);
 
-      if(index!==-1){
+      if (index !== -1) {
         this.setState({
-          isFriend : true
-        })
+          isFriend: true,
+        });
       }
     }
-
   }
-  
-  handleChange = (feildName , value) => {
+
+  handleChange = (feildName, value) => {
     this.setState({
-        [feildName] : value
-    })
+      [feildName]: value,
+    });
   };
 
   handleAddFriend = async () => {
-   
-      const userId = this.props.match.params.userId;
-      const Url = APIUrls.addFriend(userId);
+    const userId = this.props.match.params.userId;
+    const Url = APIUrls.addFriend(userId);
 
-      try {
-        const options = {
-          method : "POST",
-          headers : {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
-          }
-        };
-        const response = await fetch(Url , options);
-        const data = await response.json();
-  
-        if(data.success){
-          this.props.dispatch(addFriendSuccess(data.data.friendship));
-          this.setState({
-            success:true,
-            isFriend : true,
-            successMessage : "Added Friend Successfully !"
-          })
+    try {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+        },
+      };
+      const response = await fetch(Url, options);
+      const data = await response.json();
 
-        }else{
-          this.props.dispatch(addFriendFailure(data.messsage));  
-          this.setState({
-            success : false,
-            error : data.messsage
-          })
-        }   
-      } catch (error) {
-        console.error(error);
+      if (data.success) {
+        this.props.dispatch(addFriendSuccess(data.data.friendship));
+        this.setState({
+          success: true,
+          isFriend: true,
+          successMessage: 'Added Friend Successfully !',
+        });
+      } else {
+        this.props.dispatch(addFriendFailure(data.messsage));
+        this.setState({
+          success: false,
+          error: data.messsage,
+        });
       }
-     
-  }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-  handleRemoveFriend =async ()=>{
+  handleRemoveFriend = async () => {
     const userId = this.props.match.params.userId;
     const Url = APIUrls.removeFriend(userId);
 
     try {
       const options = {
-        method : "POST",
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization : `Bearer ${getAuthTokenFromLocalStorage()}`
-        }
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
+        },
       };
-      const response = await fetch(Url , options);
+      const response = await fetch(Url, options);
       const data = await response.json();
 
-      if(data.success){
+      if (data.success) {
         this.props.dispatch(removeFriendSuccess(userId));
         this.setState({
-          success:true,
-          isFriend : false,
-          successMessage : "Removed Friend Successfully !"
-        })
-      }else{
-        this.props.dispatch(removeFriendFailure(data.messsage));  
+          success: true,
+          isFriend: false,
+          successMessage: 'Removed Friend Successfully !',
+        });
+      } else {
+        this.props.dispatch(removeFriendFailure(data.messsage));
         this.setState({
-          success : false,
-          error : data.messsage
-        })
-      }   
+          success: false,
+          error: data.messsage,
+        });
+      }
     } catch (error) {
       console.error(error);
     }
-   
-  }
-
+  };
 
   render() {
     // const { error } = this.props.auth;
-    const {user , error ,inProgress} = this.props.profile;
-    const { isFriend , successMessage } = this.state;
-    
+    const { user, error, inProgress } = this.props.profile;
+    const { isFriend, successMessage } = this.state;
+
     // const {match : {params} } = this.props;
     // console.log(params);
 
-    if(inProgress){
-        return (<Loader />)
+    if (inProgress) {
+      return <Loader />;
     }
 
     return (
@@ -157,7 +166,7 @@ class UserProfile extends React.Component {
 
         {error && <div className="alert error-dailog">{error}</div>}
         {/* {error === false && <div className="alert success-dailog">Succesfuly Added Friend !</div>} */}
-        
+
         <div className="field">
           <div className="field-label">Email</div>
           <div className="field-value">{user.email}</div>
@@ -165,21 +174,28 @@ class UserProfile extends React.Component {
         <div className="field">
           <div className="field-label">Name</div>
           <div className="field-value">{user.name}</div>
-        
         </div>
 
-        
         <div className="btn-grp">
           {!isFriend ? (
-            <button className="button save-btn" onClick={this.handleAddFriend}>Add Friend</button>
+            <button className="button save-btn" onClick={this.handleAddFriend}>
+              Add Friend
+            </button>
           ) : (
-            <button className="button edit-btn" onClick={this.handleRemoveFriend}>Remove Friend</button>
+            <button
+              className="button edit-btn"
+              onClick={this.handleRemoveFriend}
+            >
+              Remove Friend
+            </button>
           )}
         </div>
-        {this.state.error !== null && <div className="alert error-dailog">{error}</div>}
-        {this.state.success === true && <div className="alert success-dailog">{successMessage}</div>}
-
-        
+        {this.state.error !== null && (
+          <div className="alert error-dailog">{error}</div>
+        )}
+        {this.state.success === true && (
+          <div className="alert success-dailog">{successMessage}</div>
+        )}
       </div>
     );
   }
@@ -188,8 +204,8 @@ class UserProfile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
-    profile : state.profile,
-    friends : state.friends
+    profile: state.profile,
+    friends: state.friends,
   };
 };
 
