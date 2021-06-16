@@ -25,8 +25,8 @@ class Chat extends Component {
    
     const socketConnection = this.socket;
     const self = this;
-
-    this.socket.on('connect' , function(){
+    console.log(this.socket);
+    this.socket.on('connection' , function(){
 
       console.log("Connectes Socket!");
       

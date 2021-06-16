@@ -18,7 +18,9 @@ export function fetchPosts(){
                 console.log(data);
                 dispatch(updatePosts(data.data.posts));
             })
-            
+            .catch((err)=>{
+                console.error(err);
+            })
             
     }
 
