@@ -18,8 +18,8 @@ class Chat extends Component {
         <div className="chat-header">
           Chat
           <img
-            src="https://www.iconsdb.com/icons/preview/white/minus-5-xxl.png"
-            alt=""
+            src="https://image.flaticon.com/icons/png/512/4909/4909893.png"
+            alt="MinusChat"
             height={17}
           />
         </div>
